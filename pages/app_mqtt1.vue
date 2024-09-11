@@ -465,15 +465,15 @@ export default {
                 this.systemStatus1 = "ชื้น";
             }
 
-            // กรณีที่อุณหภูมิหรือความชื้นค่อนข้างเหมาะสม
-            else if (humiStatus === 'quite dry') {
-                this.lightStates1 = [true, true, false]; // Red and Green
+            // // กรณีที่อุณหภูมิหรือความชื้นค่อนข้างเหมาะสม
+            // else if (humiStatus === 'quite dry') {
+            //     this.lightStates1 = [true, true, false]; // Red and Green
 
-                this.systemStatus1 = "ค่อนข้างแห้ง";
-            } else if (humiStatus === 'quite damp') {
-                this.lightStates1 = [false, true, true]; // Blue and Green
-                this.systemStatus1 = "ค่อนข้างชื้น";
-            }
+            //     this.systemStatus1 = "ค่อนข้างแห้ง";
+            // } else if (humiStatus === 'quite damp') {
+            //     this.lightStates1 = [false, true, true]; // Blue and Green
+            //     this.systemStatus1 = "ค่อนข้างชื้น";
+            // }
             // กรณีที่ทั้งอุณหภูมิและความชื้นไม่เหมาะสม
             else {
                 this.lightStates1 = [true, true, true]; // All lights on
@@ -493,13 +493,14 @@ export default {
             } else if (tempStatus === 'cold') {
                 this.lightStates = [false, false, true]; // Red only
                 this.systemStatus = "เย็นเกินไป";
-            } else if (tempStatus === 'quite hot') {
-                this.lightStates = [true, true, false]; // Red and Green
-                this.systemStatus = "ค่อนข้างร้อน";
-            } else if (tempStatus === 'quite cold') {
-                this.lightStates = [false, true, true]; // Blue and Green
-                this.systemStatus = "ค่อนข้างเย็น";
-            }
+            } 
+            // else if (tempStatus === 'quite hot') {
+            //     this.lightStates = [true, true, false]; // Red and Green
+            //     this.systemStatus = "ค่อนข้างร้อน";
+            // } else if (tempStatus === 'quite cold') {
+            //     this.lightStates = [false, true, true]; // Blue and Green
+            //     this.systemStatus = "ค่อนข้างเย็น";
+            // }
         },
 
 
@@ -604,18 +605,18 @@ export default {
             return `Step ${this.stepIndex + 1}`;
         },
         temperatureStatus() {
-            if (this.value_temp == (this.value_t1 + this.value_t2) / 2) return 'appropriate';
-            if (this.value_temp >= this.value_t1 && this.value_temp <= this.value_t2 && this.value_temp > (this.value_t1 + this.value_t2) / 2) return 'quite hot';
-            if (this.value_temp >= this.value_t1 && this.value_temp <= this.value_t2 && this.value_temp < (this.value_t1 + this.value_t2) / 2) return 'quite cold';
+            if (this.value_temp >= this.value_t1 && this.value_temp <= this.value_t2) return 'appropriate';
+            // if (this.value_temp >= this.value_t1 && this.value_temp <= this.value_t2 && this.value_temp > (this.value_t1 + this.value_t2) / 2) return 'quite hot';
+            // if (this.value_temp >= this.value_t1 && this.value_temp <= this.value_t2 && this.value_temp < (this.value_t1 + this.value_t2) / 2) return 'quite cold';
             if (this.value_temp > this.value_t2) return 'hot';
             if (this.value_temp < this.value_t1) return 'cold';
 
             return 'inappropriate';
         },
         humidityStatus() {
-            if (this.value_humi == (this.value_h1 + this.value_h2) / 2) return 'appropriate';
-            if (this.value_humi >= this.value_h1 && this.value_humi <= this.value_h2 && this.value_humi < (this.value_h1 + this.value_h2) / 2) return 'quite dry';
-            if (this.value_humi >= this.value_h1 && this.value_humi <= this.value_h2 && this.value_humi > (this.value_h1 + this.value_h2) / 2) return 'quite damp';
+            if (this.value_humi >= this.value_h1 && this.value_humi <= this.value_h2) return 'appropriate';
+            // if (this.value_humi >= this.value_h1 && this.value_humi <= this.value_h2 && this.value_humi < (this.value_h1 + this.value_h2) / 2) return 'quite dry';
+            // if (this.value_humi >= this.value_h1 && this.value_humi <= this.value_h2 && this.value_humi > (this.value_h1 + this.value_h2) / 2) return 'quite damp';
             if (this.value_humi < this.value_h1) return 'dry';
             if (this.value_humi > this.value_h2) return 'damp';
             return 'inappropriate';
